@@ -16,16 +16,20 @@ class JsFlyGenerator {
 	@:persistent static var gen:ExampleJSGenerator;
 	@:persistent static var val:Int;
 
-	public static function use() @:privateAccess{
+	public static function use() @:privateAccess {
 		val = 5;
+		// var test = macro new Test();
 		Compiler.setCustomJSGenerator(api -> {
-            gen = new ExampleJSGenerator(api);
-            trace(gen);
-            var cl = macro haxe.io.Bytes.ofString('');
-            trace(cl);
-			var type = cl.typeof().sure();
-			trace(type);
-			gen.genType(type);
+			gen = new ExampleJSGenerator(api);
+			var exprs = [
+				macro new test.Test(),
+				macro haxe.io.Bytes.ofString(''),
+				macro new haxe.io.StringInput('')
+			];
+			for (cl in exprs) {
+				var type = cl.typeof().sure();
+				gen.genType(type);
+			}
 			sys.io.File.saveContent("./bytes.js", gen.buf.toString());
 			while (true) {
 				Sys.sleep(1.0);
@@ -34,7 +38,7 @@ class JsFlyGenerator {
 	}
 	#end
 
-	public static macro function test()  {
+	public static macro function test() {
 		trace(gen);
 		trace(val);
 		// var cl = macro(new Test());
@@ -50,6 +54,7 @@ class JsFlyGenerator {
 	}
 
 	public static function main() {
+		new Test();
 		test();
 	}
 }
