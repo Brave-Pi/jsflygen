@@ -1,0 +1,11 @@
+
+--macro Export.export()
+--js out.js
+-lib jsfly
+-lib hxnodejs
+-lib tink_macro
+-lib tink_web
+-lib tink_json
+-D js-es=6
+-D shallow-expose
+-cp .

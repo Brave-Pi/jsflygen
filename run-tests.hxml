@@ -1,0 +1,17 @@
+--library hxnodejs
+--library tink_tcp
+--library tink_macro
+--library tink_core
+--library asys
+--library tink_web
+-cp src
+--library tink_unittest
+-cp test
+--main RunTests
+--each
+# --neko run-tests.n
+
+--library hxnodejs
+--js run-tests.js
+# --next
+# --python run-tests.py

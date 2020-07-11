@@ -1,8 +1,2 @@
---dce no
--lib hxnodejs
--lib tink_macro
--cp src
---macro JsFlyGenerator.use()
---each
--main JsFlyGenerator
--js test.js
+--cwd templates/tink_web
+build.hxml
