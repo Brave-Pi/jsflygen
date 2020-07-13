@@ -103,7 +103,6 @@ class StagingClient extends SimpleDisposable {
 			});
 		}).next(_ -> {
 			moveTo: function moveTo(outputDir) {
-				trace('move $dir/${name.toLowerCase()}.js to $outputDir');
 				return FileSystem.rename('$dir/${name.toLowerCase()}.js', outputDir)
 					.next(r -> {
 						cleanup().next(_ -> {
@@ -111,8 +110,6 @@ class StagingClient extends SimpleDisposable {
 						}).recover(err -> '$err');
 					})
 					.tryRecover(err -> {
-						trace('FAILED: $err');
-						trace('retrying');
 						moveTo(outputDir);
 					})
 					.eager();

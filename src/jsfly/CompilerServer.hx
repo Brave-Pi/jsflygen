@@ -10,7 +10,6 @@ import tink.CoreApi;
 
 class CompilerServer extends SimpleDisposable {
 	var process:Process;
-	var alive = true;
 
 	public var port:Int;
 
@@ -25,7 +24,7 @@ class CompilerServer extends SimpleDisposable {
 	}
 
 	function getProcess() {
-		if (alive)
+		if (!disposed)
 			this.process = {
 				var ret = new asys.io.Process('npx.cmd', ['haxe', '-v', '--wait', '${++port}']);
 				ret.exitCode().next(code -> {
@@ -37,8 +36,7 @@ class CompilerServer extends SimpleDisposable {
 	}
 
 	public function kill() {
-		if (alive) {
-			this.alive = false;
+		if (!disposed) {
 			if (Sys.systemName() == 'Windows') {
 				var pid = this.process.getPid();
 

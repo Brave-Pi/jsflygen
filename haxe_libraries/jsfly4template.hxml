@@ -3,5 +3,5 @@
 --library tink_core
 --library asys
 --library tink_web
--cp ../../src
+-cp ../../../src
 -D jsfly=0.0.0

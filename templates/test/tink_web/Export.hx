@@ -12,13 +12,13 @@ class Export {
 		var routerTp = {pack: [tmpDir], name: typeName};
 		var routerType = haxe.macro.Context.getType(routerPath).toComplex();
 		var def:TypeDefinition = macro class $typeName {
-			var router:Dynamic;
+			public var router:Dynamic;
 
 			public function new() {
 				this.router = new tink.web.routing.Router<$routerType>(new $routerTp());
 			}
 
-			public function route(ctx:tink.web.routing.Context) {
+			public function route(ctx:tink.web.routing.Context):tink.core.Promise<tink.http.Response.OutgoingResponse> {
 				return router.route(ctx);
 			}
 		};

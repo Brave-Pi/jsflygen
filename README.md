@@ -5,6 +5,8 @@ npm i
 npx lix download
 ```
 
+# How it works
+
 # Run
 
 ```
