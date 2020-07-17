@@ -8,7 +8,7 @@ import haxe.macro.Expr;
 // import haxe.macro.Field;
 class Exporter {
 	#if macro
-	public static function export(tmpDir:String, className:String, createTypeDef:String->String->TypeDefinition /* , superClass = "BaseCl" */) {
+	public static function export(tmpDir:String, className:String, createTypeDef:String->String->TypeDefinition ) {
 		var path = className.split('.');
 		var typeName = path.pop();
 		haxe.macro.Compiler.include(tmpDir);
@@ -22,7 +22,6 @@ class Exporter {
 		};
 		haxe.macro.Context.defineModule(className, [def], null, null);
 		haxe.macro.Compiler.include(className);
-		trace('output dir: ${tmpDir + '/' + className.toLowerCase() + '.js'}');
 		haxe.macro.Compiler.setOutput(tmpDir + '/' + className.toLowerCase() + '.js');
 	}
 	#end

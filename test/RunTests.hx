@@ -5,7 +5,6 @@ import tink.io.Source.IdealSource;
 import tink.http.Method;
 import jsfly.*;
 import tink.unit.*;
-// import tink.unit.Assert;
 import tink.testrunner.*;
 import Utils.attempt;
 import tink.streams.Stream;
@@ -14,7 +13,6 @@ import tink.http.Response;
 import tink.http.Request;
 
 using Lambda;
-// import asys.io.Process;
 using Utils;
 
 class RunTests {
@@ -138,6 +136,7 @@ class Test {
 			body = "";
 		return new OutgoingRequest(new OutgoingRequestHeader(method, path, HTTP2, headers), body);
 	}
+
 	@:teardown
 	public function shutdown_server() {
 		return server.kill().next(code -> {

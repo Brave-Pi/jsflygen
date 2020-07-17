@@ -123,7 +123,6 @@ class StagingClient extends SimpleDisposable {
 			var exists = dirName -> FileSystem.exists(dirName);
 			function check()
 				exists(dir = './$templateDir/tmp${current++}').next(exists -> {
-					trace('exists: $exists');
 					if (disposed) {
 						cb.invoke(Failure(new Error('terminated')));
 						Noise;
